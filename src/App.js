@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { BrowserRouter, NavLink, Route, Switch } from "react-router-dom";
-import { Home, Graph } from "./components";
+import { Home, Graph, Random } from "./components";
 import Highlight from "./components/Highlight";
 
 import "./App.css";
@@ -11,7 +11,9 @@ class App extends Component {
       <BrowserRouter>
         <Fragment>
           <header className="App__header">
-            <div className="App__header__title">Code splitting dojo</div>
+            <div className="App__header__title">
+              Code splitting dojo <Random />
+            </div>
             <div className="App__header__links">
               <NavLink
                 activeClassName="App__header__link__selected"
