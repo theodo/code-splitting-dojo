@@ -26,7 +26,7 @@ class Home extends Component {
           color="primary"
           onClick={this.handleClickOpen}
         >
-          Choose a date
+          Just click me already
         </Button>
         <Modal open={this.state.open} onClose={this.handleClose} />
       </div>

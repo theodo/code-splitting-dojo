@@ -8,6 +8,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import blue from "@material-ui/core/colors/blue";
 import { SingleDatePicker } from "react-dates";
 import moment from "moment";
+import "moment/min/locales.min";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 
@@ -42,6 +43,7 @@ class SimpleDialog extends React.Component {
           This popin is displaying a datepicker
         </DialogTitle>
         <DialogContent style={{ width: "700px", height: "400px" }}>
+          <div>Date I learned to split my code:</div>
           <SingleDatePicker
             date={this.state.date}
             onDateChange={date => this.setState({ date })}

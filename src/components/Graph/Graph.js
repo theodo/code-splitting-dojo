@@ -4,11 +4,11 @@ import HighchartsReact from "highcharts-react-official";
 
 const options = {
   title: {
-    text: "My stock chart"
+    text: "Number of javascript chunks by date"
   },
   series: [
     {
-      data: [1, 2, 3]
+      data: [1, 2, 3, 5, 20]
     }
   ]
 };
