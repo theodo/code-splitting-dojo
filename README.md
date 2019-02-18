@@ -71,7 +71,7 @@ Finally, add the following command to your package.json:
 And launch it:
 
 ```
-yarn anlyze
+yarn analyze
 ```
 
 Now you can see whats in our bundle. We have several big big libraries: highlightjs is over 188Kb, highcharts 100Kb, moment 65Kb.
