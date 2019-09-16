@@ -143,8 +143,8 @@ Follow their instructions and rework the synthax hightlighter import:
 // src/components/Hightlight/Highlight.js
 
 import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
-import js from "react-syntax-highlighter/dist/languages/hljs/javascript";
-import docco from "react-syntax-highlighter/dist/styles/hljs/docco";
+import js from "react-syntax-highlighter/dist/esm/languages/hljs/javascript";
+import docco from "react-syntax-highlighter/dist/esm/styles/hljs/docco";
 
 SyntaxHighlighter.registerLanguage("javascript", js);
 ```
@@ -195,10 +195,48 @@ Now let us see what happened. Launch a `yarn analyze`.
 
 Now we have another chunk with moment and react-dates within it, and our biggest chunks is the one with highstock in it!
 
+## Bundle splitting
+
+Ok, now, our users will download only the JS they need, when they arrive on our website. That is great!
+
+But I like to put my code in production every other day. When I do that, I will rebuild my code. Webpack adds a hash to every chunk, that hashes its content. So when I rebuild my app, if nothing in my chunk has changed, its name will be the same. And our client's browser, that has our chunks stored in memory, will not download them again.
+
+So when I deploy my code, the users that come to my website everyday will only download the chunks that changed. But still, we have chunks that reach 100KB, that contain our code and our librairies. If I change my website color, I do not want my user to download the full chunk, but only the JS that changed.
+
+To make that happen, we will use bundle splitting. That means, we will split our chunks into much smaller chunks, containing only our code or one library.
+
+To do that, we will add the following lines to our `config-overrides.js`:
+
+```js
+config.optimization.splitChunks = {
+  chunks: "all",
+  maxInitialRequests: Infinity,
+  minSize: 0,
+  cacheGroups: {
+    vendor: {
+      test: /[\\/]node_modules[\\/]/,
+      enforce: true,
+      name(module) {
+        // get the name. E.g. node_modules/packageName/not/this/part.js
+        // or node_modules/packageName
+        const packageName = module.context.match(
+          /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+        )[1];
+
+        // npm package names are URL-safe, but some servers don't like @ symbols
+        return `npm.${packageName.replace("@", "")}`;
+      }
+    }
+  }
+};
+```
+
+Launch a `yarn analyze`. As you can see, our code is splitted in much more chunks, that contain only our code our a single library. So when a reccurent user comes to my website after I deployed, he will only download the minimal update JS.
+
 ## Result
 
-We started with 510Kb of JS in one bundle. Now we have 250Kb of JS in 8 bundles, and the biggest one weights less thant 100Kb.
+We started with 510Kb of JS in one bundle. Now we have 250Kb of JS in 8 bundles, and the biggest one weights less thant 200Kb.
 
 We decreased the loading time from 1.20s to 700ms, and the time to first paint from 500ms to 300ms (check it by relaunching the simple gzip server).
 
-One we contributed to save the planet: 10GB takes 1KW/h of energy to transit to your client (1KWh is the energy needed to take a shower, or light your house for a day).
+And we contributed to save the planet: 10GB takes 1KW/h of energy to transit to your client (1KWh is the energy needed to take a shower, or light your house for a day).
