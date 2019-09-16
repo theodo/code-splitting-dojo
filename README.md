@@ -37,7 +37,7 @@ python ../GzipSimpleHTTPServer.py
 
 Go to http://localhost:8000/, refresh your page with the Network tab opened: you can see that our website loads in 1.20s, and the time to see the first colored pixel (DOMContentLoaded in blue) is of 500ms.
 
-When you launched your `yarn build`, you could see that the size of your chunks was displayed. Our biggest one has a size of 500Kb gzipped. That is waaaay too much. But why is that ?
+When you launched your `yarn build`, you could see that the size of your chunks was displayed. Our biggest one has a size of 600Kb gzipped. That is waaaay too much. But why is that ?
 
 I installed for you webpack bundle analyzer to see what contains this chunk.
 
@@ -235,7 +235,7 @@ Launch a `yarn analyze`. As you can see, our code is splitted in much more chunk
 
 ## Result
 
-We started with 510Kb of JS in one bundle. Now we have 250Kb of JS in 8 bundles, and the biggest one weights less thant 200Kb.
+We started with 610Kb of JS in one bundle. Now we have 350Kb of JS in 8 bundles, and the biggest one weights less thant 200Kb.
 
 We decreased the loading time from 1.20s to 700ms, and the time to first paint from 500ms to 300ms (check it by relaunching the simple gzip server).
 
