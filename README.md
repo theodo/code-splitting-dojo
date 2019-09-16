@@ -80,9 +80,7 @@ Now you can see whats in our bundle. We have several big big libraries: highligh
 
 ## Let's split
 
-First, let's read the [standard](https://m33.gitbook.io/standards/technical-gesture/performance/how-to-build-a-performant-javascript-application/how-to-split-your-code-with-webpack)
-
-Are you done? Great!
+If you want more information about code splitting, you can read the [documentation](https://webpack.js.org/guides/code-splitting/).
 
 Let's begin by splitting our code by route. In your App.js, import Suspense and lazy, and import your routes component dynamically:
 
@@ -112,7 +110,7 @@ Now we have two bundles: one of 300Kb and one of 200Kb. Nice!
 
 ## Global exports
 
-But wait, we have three routes, we should see three bundles? Highcharts should be in a separated bundle!
+But wait, we have three routes, we should see four bundles? Highcharts should be in a separated bundle!
 Whats happening here? As you can see, in our App.js, we have this line:
 
 ```js
