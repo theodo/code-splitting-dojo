@@ -37,13 +37,15 @@ python ../GzipSimpleHTTPServer.py
 
 Go to http://localhost:8000/, refresh your page with the Network tab opened: you can see that our website loads in 1.20s, and the time to see the first colored pixel (DOMContentLoaded in blue) is of 500ms.
 
-When you launched your `yarn build`, you could see that the size of your chunks was displayed. Our biggest one has a size of 500Kb gzipped. That is waaaay too much. But why is that ? Lets install webpack bundle analyzer to see what contains this chunk.
+When you launched your `yarn build`, you could see that the size of your chunks was displayed. Our biggest one has a size of 500Kb gzipped. That is waaaay too much. But why is that ?
+
+I installed for you webpack bundle analyzer to see what contains this chunk.
 
 ```bash
 yarn add --dev react-app-rewire-webpack-bundle-analyzer
 ```
 
-Replace the content of config-overrides.js with:
+I replaced the content of config-overrides.js with:
 
 ```js
 module.exports = function override(config, env) {
@@ -62,7 +64,7 @@ module.exports = function override(config, env) {
 
 This project is based on create-react-app, and this is how we can override the webpack config.
 
-Finally, add the following command to your package.json:
+Finally, I added the following command to your package.json:
 
 ```
 "analyze": "react-app-rewired build --analyze-bundle",
