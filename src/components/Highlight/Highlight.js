@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { docco } from "react-syntax-highlighter/dist/styles/hljs";
+import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 class Highlight extends Component {
   render() {
