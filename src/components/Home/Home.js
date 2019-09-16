@@ -1,6 +1,7 @@
-import React, { Component } from "react";
-import Modal from "../Modal";
+import React, { Component, lazy, Suspense } from "react";
 import Button from "@material-ui/core/Button";
+
+const Modal = lazy(() => import("../Modal"));
 
 class Home extends Component {
   state = {
@@ -28,7 +29,9 @@ class Home extends Component {
         >
           Just click me already
         </Button>
-        <Modal open={this.state.open} onClose={this.handleClose} />
+        <Suspense fallback={null}>
+          <Modal open={this.state.open} onClose={this.handleClose} />
+        </Suspense>
       </div>
     );
   }

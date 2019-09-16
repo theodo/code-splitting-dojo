@@ -1,9 +1,11 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment, lazy, Suspense } from "react";
 import { BrowserRouter, NavLink, Route, Switch } from "react-router-dom";
-import { Home, Graph, Random } from "./components";
-import Highlight from "./components/Highlight";
-
+import Random from "./components/Random";
 import "./App.css";
+
+const Home = lazy(() => import("./components/Home"));
+const Graph = lazy(() => import("./components/Graph"));
+const Highlight = lazy(() => import("./components/Highlight"));
 
 class App extends Component {
   render() {
@@ -43,9 +45,11 @@ class App extends Component {
           </header>
           <div className="App__body">
             <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/graph" component={Graph} />
-              <Route exact path="/highlight" component={Highlight} />
+              <Suspense fallback={null}>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/graph" component={Graph} />
+                <Route exact path="/highlight" component={Highlight} />
+              </Suspense>
             </Switch>
           </div>
         </Fragment>

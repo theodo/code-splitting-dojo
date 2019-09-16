@@ -6,9 +6,10 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import blue from "@material-ui/core/colors/blue";
-import { SingleDatePicker } from "react-dates";
+import SingleDatePicker from "react-dates/lib/components/SingleDatePicker";
 import moment from "moment";
-import "moment/min/locales.min";
+import "moment/locale/en-gb";
+import "moment/locale/fr";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 

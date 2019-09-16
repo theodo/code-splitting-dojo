@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from "react";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
+import js from "react-syntax-highlighter/dist/esm/languages/hljs/javascript";
+import docco from "react-syntax-highlighter/dist/esm/styles/hljs/docco";
 
+SyntaxHighlighter.registerLanguage("javascript", js);
 class Highlight extends Component {
   render() {
     const codeString = `
